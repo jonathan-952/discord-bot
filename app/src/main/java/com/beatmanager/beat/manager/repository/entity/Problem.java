@@ -1,4 +1,4 @@
-package com.beatmanager.beat.manager;
+package com.beatmanager.beat.manager.repository.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

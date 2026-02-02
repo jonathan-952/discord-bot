@@ -1,4 +1,4 @@
-package com.beatmanager.beat.manager;
+package com.beatmanager.beat.manager.repository.entity;
 
 import java.time.Instant;
 import java.util.List;
@@ -8,6 +8,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 
 @Entity(name = "users")
 public class User {
@@ -23,6 +24,7 @@ public class User {
   private String passwordHash;
 
   @Column(name = "leetcode_problems", nullable = true)
+  @OneToMany
   private List<Problem> problems;
 
   @Column(name = "username", nullable = false)
