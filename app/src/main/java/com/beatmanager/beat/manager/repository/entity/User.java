@@ -23,17 +23,17 @@ public class User {
   @Column(name = "password_hash", nullable = true)
   private String passwordHash;
 
-  @Column(name = "leetcode_problems", nullable = true)
-  @OneToMany
-  private List<Problem> problems;
-
   @Column(name = "username", nullable = false)
   private String username;
 
-  protected User(String username, String email, String password) {
+  public User(String username, String email, String password) {
     this.username = username;
     this.email = email;
     this.passwordHash = password;
+
+  }
+
+  protected User() {
 
   }
 
@@ -41,18 +41,9 @@ public class User {
     return email;
   }
 
-  public List<Problem> getProblems() {
-    return problems;
-  }
-
   public String getUsername() {
     return username;
   }
-
-  public User() {
-
-  }
-
   
 
 
