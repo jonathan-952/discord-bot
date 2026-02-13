@@ -14,8 +14,10 @@ import com.beatmanager.beat.manager.repository.entity.UserPrincipal;
 public class CustomUserDetailsService implements UserDetailsService {
     @Autowired
     UserRepository userRepository;
+    
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+
         User byUserName = userRepository.findByUsername(username)
             .orElseThrow(() -> new UsernameNotFoundException("User not found: " + username));
 

@@ -27,11 +27,13 @@ public class SecurityConfig {
         http
             .csrf(csrf -> csrf.disable()) 
             .authorizeHttpRequests(auth -> auth
+                 .requestMatchers("/user/sign-up").permitAll()
                 .anyRequest().authenticated() 
             ).formLogin(Customizer.withDefaults())
             .httpBasic(Customizer.withDefaults());
         return http.build();
     }
+
     @Bean
     public AuthenticationProvider authenticationProvider() {
         DaoAuthenticationProvider authenticationProvider = new DaoAuthenticationProvider(userDetailsService);
