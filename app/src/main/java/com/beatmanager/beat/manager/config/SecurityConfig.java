@@ -29,10 +29,10 @@ public class SecurityConfig {
         http
             .csrf(csrf -> csrf.disable()) 
             .authorizeHttpRequests(auth -> auth
-                 .requestMatchers("/user/sign-up").permitAll()
+                 .requestMatchers("/user/sign-up", "/user/login").permitAll()
                 .anyRequest().authenticated() 
-            ).formLogin(Customizer.withDefaults())
-            .httpBasic(Customizer.withDefaults());
+            ).formLogin(form -> form.disable())
+        .httpBasic(basic -> basic.disable());
         return http.build();
     }
 
