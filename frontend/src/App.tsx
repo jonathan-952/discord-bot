@@ -1,13 +1,24 @@
+import { useState, useEffect } from "react";
+import ReactDOM from "react-dom/client";
+import Login from "./popup/Login";
+import Signup from "./popup/Signup";
+// import Dashboard from "./popup/Dashboard";
+import "./index.css";
 
-import './App.css'
+type Page = "login" | "signup" | "dashboard";
 
-function App() {
+export default function App() {
+  const [page, setPage] = useState<Page>("login");
 
-  return (
-    <div>
-      <h1>Working...</h1>
-    </div>
-  )
+  useEffect(() => {
+    chrome.storage.local.get("jwt_token", (result) => {
+      if (result.jwt_token) setPage("dashboard");
+    });
+  }, []);
+
+  // if (page === "dashboard") return <Dashboard onLogout={() => setPage("login")} />;
+  if (page === "signup") return <Signup onSignup={() => setPage("dashboard")} onBack={() => setPage("login")} />;
+  return <Login onLogin={() => setPage("dashboard")} onSignup={() => setPage("signup")} />;
 }
 
-export default App
+ReactDOM.createRoot(document.getElementById("root")!).render(<App />);

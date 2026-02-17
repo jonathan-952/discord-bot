@@ -1,3 +1,5 @@
+
+
 let hasTriggered = false;
 
 function checkForAccepted() {
@@ -12,6 +14,14 @@ function checkForAccepted() {
   if (statusText === "Accepted" && !hasTriggered) {
     hasTriggered = true;
     console.log("✅ Accepted detected!");
+
+    chrome.runtime.sendMessage({
+      type: "SUBMISSION_ACCEPTED",
+      payload: {
+        url: location.href,
+        timestamp: Date.now(),
+      }
+    });
   }
 }
 
