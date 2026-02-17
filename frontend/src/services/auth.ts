@@ -8,8 +8,8 @@ export async function handleLogin({ username, password }: { username: string; pa
       body: JSON.stringify({ username, password }),
     });
     if (!response.ok) throw new Error("invalid credentials");
-    const data = await response.json();
-    await chrome.storage.local.set({ jwt_token: data.token });
+    const data = await response.text();
+    await chrome.storage.local.set({ jwt_token: data });
     return { success: true };
   } catch (err: any) {
     return { success: false, error: err.message };
