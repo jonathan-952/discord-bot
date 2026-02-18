@@ -1,4 +1,4 @@
-const API_URL = "http://localhost:8080/user/submission";
+const API_URL = "http://localhost:8080/user";
 
 export async function handleAccepted(payload: object) {
   try {

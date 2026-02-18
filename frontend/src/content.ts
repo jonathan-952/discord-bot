@@ -3,7 +3,7 @@ import { getToken } from "./services/submissions";
 var token: string | null = null;
 var hasTriggered = false;
 var topics: string[] = grabTopics();
-var problem_id: string = grabProblemSlug();
+var problemID: string = grabProblemSlug();
 
 function grabTopics(): string[] {
   const tagEls = document.querySelectorAll('a[href^="/tag/"]');
@@ -31,7 +31,7 @@ function checkForAccepted() {
     chrome.runtime.sendMessage({
       type: "SUBMISSION_ACCEPTED",
       payload: {
-        problem_id,
+        problemID,
         topics,
       }
     });
@@ -64,7 +64,7 @@ setInterval(async () => {
     token = await getToken();
     // Re-grab in case user navigated to a different problem
     topics = grabTopics();
-    problem_id = grabProblemSlug();
+    problemID = grabProblemSlug();
     console.log("🔄 URL changed, reset trigger");
   }
 }, 1000);

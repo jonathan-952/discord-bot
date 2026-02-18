@@ -1,6 +1,9 @@
 package com.beatmanager.beat.manager.repository.entity;
 
+import java.util.List;
+
 import jakarta.persistence.Column;
+import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -13,21 +16,30 @@ public class Problem {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
   
-  @Column(nullable = false, unique = false)
-  private String problem_id;
+  @Column(name = "problem_id", nullable = false, unique = false)
+  private String problemID;
 
   @Column(nullable = true, unique = false)
   private String notes;
 
-  @Column(nullable = false, unique = false)
-  private String user_id;
+  @Column(name = "user_id", nullable = false, unique = false)
+  private String userID;
+
+  @Column(name = "topics", nullable = true, unique = false)
+  @ElementCollection
+  private List<String> topics;
+
+  public void setUserID(String userID) {
+    this.userID = userID;
+
+  }
 
 protected Problem() {}
 
-public Problem(String problem_id, String notes, String user_id) {
-    this.problem_id = problem_id;
+public Problem(String problemID, String notes, String userID) {
+    this.problemID = problemID;
     this.notes = notes;
-    this.user_id = user_id;
+    this.userID = userID;
 
 }
 

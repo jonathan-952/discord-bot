@@ -21,6 +21,8 @@ import com.beatmanager.beat.manager.repository.entity.User;
 import com.beatmanager.beat.manager.service.ProblemService;
 import com.beatmanager.beat.manager.service.UserService;
 
+import jakarta.servlet.http.HttpServletRequest;
+
 @RestController
 @RequestMapping("/user")
 public class UserController {
@@ -51,8 +53,11 @@ public class UserController {
     }
 
     @PostMapping("/submission")
-    public ResponseEntity<?> addProblem(@RequestBody Problem payload) {
-        problemService.saveProblem(payload);
+    public ResponseEntity<?> addProblem(HttpServletRequest request, @RequestBody Problem payload) {
+
+        System.out.println(payload);
+
+        problemService.saveProblem(payload, request.getHeader("Authorization"));
 
         return ResponseEntity.ok().build();
 
