@@ -1,5 +1,7 @@
 package com.beatmanager.beat.manager.service;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -28,8 +30,20 @@ public class ProblemService {
             username = jwtService.extractUsername(token);
         }
         
-        payload.setUserID(username);
+        Optional<Problem> duplicate = problemRepo.findByUserIdAndProblemID(username, payload.getProblemID());
+
+        if (duplicate.isPresent()) {
+            Problem exists = duplicate.get();
+
+            // update fields: rating, notes, attempts, etc.
+
+            problemRepo.save(exists);
+        }
+
         
+
+        payload.setUserID(username);
+
         return problemRepo.save(payload);
     }
 

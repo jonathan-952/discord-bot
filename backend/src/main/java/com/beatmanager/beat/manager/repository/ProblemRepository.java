@@ -12,6 +12,8 @@ import com.beatmanager.beat.manager.repository.entity.Problem;
 public interface ProblemRepository extends JpaRepository<Problem, Long> {
 
     Optional<List<Problem>> findByUserID(String userID);
+
+    Optional<Problem> findByUserIdAndProblemID(String userID, String problemID);
   
 }
   

@@ -31,7 +31,10 @@ public class Problem {
 
   public void setUserID(String userID) {
     this.userID = userID;
+  }
 
+  public String getProblemID() {
+    return problemID;
   }
 
 protected Problem() {}
