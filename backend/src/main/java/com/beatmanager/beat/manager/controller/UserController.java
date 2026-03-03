@@ -93,7 +93,7 @@ public class UserController {
 
     @GetMapping("/verify_email")
     public ResponseEntity<?> verifyEmail(@RequestParam String token) {
-
+        System.out.println("token: " + token);
         try {
             userService.verifyEmail(token);
             return ResponseEntity.ok("Email verified successfully!");

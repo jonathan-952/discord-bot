@@ -5,7 +5,6 @@ import org.springframework.security.core.AuthenticationException;
 import java.util.Optional;
 import java.util.UUID;
 
-import org.deanframework.component.auth.exception.InvalidTokenException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -53,9 +52,10 @@ public class UserService {
         Optional<User> checkUserVerified = userRepo.findByUsername(user.getUsername());
 
         checkUserVerified.ifPresent(u -> {
+            // if we can find user AND that user is verified -> generate JWT token
             if (u.isEmailVerified() == false) {
                 throw new RuntimeException("Email not verified");
-                // do something
+          
             }
         });
         
@@ -77,3 +77,5 @@ public class UserService {
         userRepo.save(user);
     }
  }
+
+ 

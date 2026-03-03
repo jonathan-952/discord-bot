@@ -1,14 +1,11 @@
 package com.beatmanager.beat.manager.repository.entity;
 
-import java.sql.Date;
-import java.time.LocalDateTime;
 import java.time.OffsetDateTime;
-import java.util.List;
 
-import org.springframework.data.annotation.LastModifiedDate;
+
 
 import jakarta.persistence.Column;
-import jakarta.persistence.ElementCollection;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -42,9 +39,6 @@ public class Problem {
   @Column(name = "user_id", nullable = false, unique = false)
   private String userID;
 
-  @ElementCollection
-  private List<String> topics;
-
 
   @PrePersist
   public void prePersist() {
@@ -56,15 +50,12 @@ public class Problem {
       lastSubmitted = OffsetDateTime.now();
   }
 
-
-
 protected Problem() {}
 
-public Problem(List<String> topics, Integer rating, String problemID, String notes, String userID) {
+public Problem(Integer rating, String problemID, String notes, String userID) {
     this.problemID = problemID;
     this.notes = notes;
     this.userID = userID;
-    this.topics = topics;
     this.rating = rating;
 }
 

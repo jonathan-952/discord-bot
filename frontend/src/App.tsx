@@ -55,7 +55,7 @@ export default function App() {
   }
 
   if (page === "signup") {
-    return <Signup onSignup={() => setPage("dashboard")} onBack={() => setPage("login")} />;
+    return <Signup onSignup={() => setPage("login")} onBack={() => setPage("login")} />;
   }
 
   return <Login onLogin={() => setPage("dashboard")} onSignup={() => setPage("signup")} />;

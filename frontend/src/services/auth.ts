@@ -1,4 +1,5 @@
-const API_URL = "https://lcrecall.xyz/user";
+// const API_URL = "https://lcrecall.xyz/user";
+const API_URL = "http://localhost:8080/user";
 
 export async function handleLogin({
   username,
@@ -8,13 +9,15 @@ export async function handleLogin({
   password: string;
 }) {
   try {
-    console.log("called: ", username, password);  // add this
     const response = await fetch(`${API_URL}/login`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ username, password }),
     });
-    if (!response.ok) throw new Error("Invalid credentials");
+    if (!response.ok) {
+      const error = await response.text()
+      throw new Error(error);
+    }
     const token = await response.text();
 
     // ✅ Wait until token is fully written to storage
@@ -41,11 +44,12 @@ export async function handleSignup({
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ username, email, password }),
     });
-    if (!response.ok) throw new Error("Sign-up failed");
-    const data = await response.json();
+   if (!response.ok) {
+      const error = await response.text()
+      throw new Error(error);
+    }
 
-    await chrome.storage.local.set({ jwt_token: data.token });
-    return { success: true, token: data.token };
+    return { success: true};
   } catch (err: unknown) {
     const message = err instanceof Error ? err.message : "An unknown error occurred";
     return { success: false, error: message };

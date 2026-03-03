@@ -101,12 +101,7 @@
 <dependency>
     <groupId>io.github.cdimascio</groupId>
     <artifactId>dotenv-java</artifactId>
-    <version>3.0.0</version> <!-- Replace with the latest version -->
-</dependency>
-<dependency>
-    <groupId>me.paulschwarz</groupId>
-    <artifactId>spring-dotenv</artifactId>
-    <version>4.0.0</version>
+    <version>3.2.0</version> <!-- Replace with the latest version -->
 </dependency>
 <dependency>
     <groupId>org.projectlombok</groupId>
@@ -142,12 +137,7 @@
     <groupId>org.springframework.boot</groupId>
     <artifactId>spring-boot-starter-mail</artifactId>
 </dependency>
- 
-   <dependency>
-     <groupId>io.github.dean-lhb</groupId>
-     <artifactId>dean-framework-component-auth</artifactId>
-     <version>1.0.8</version>
-   </dependency>
+
  </dependencies>
 
 	<build>
