@@ -18,7 +18,7 @@ public class EmailService {
 
         MimeMessageHelper helper = new MimeMessageHelper(message, true);
 
-        String verificationUrl = "https://lcrecall.xyz/verify_email?token=" + token;
+        String verificationUrl = "https://lcrecall.xyz/user/verify_email?token=" + token;
         // String verificationUrl = "http://localhost:8080/user/verify_email?token=" + token;
 
         helper.setTo(to);
